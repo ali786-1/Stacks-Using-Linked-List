@@ -1,0 +1,103 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node 
+{
+    int val;
+    struct node* next;
+}*t,*n,*h,*ptr;
+struct node *head=NULL;
+struct node *tail=NULL;
+
+void push()
+{
+    int val;
+    struct node *ptr=(struct node*)malloc(sizeof(struct node));
+    if(ptr==NULL)
+    {
+        printf("not able to push");
+    }
+    else
+    {
+        printf("\nenter element to push\n");
+        scanf("%d",&val);
+        if(head==NULL)
+        {
+            ptr->val=val;
+            ptr->next=NULL;
+            head=ptr;
+        }
+        else
+        {
+            ptr->val=val;
+            ptr->next=head;
+            head=ptr;
+        }
+        printf("item is pushed into the stack\n");
+    }
+}
+void pop()
+{
+    int i;
+    struct node *ptr;
+    if(head==NULL)
+    {
+        printf("stack underflow");
+
+    }
+    else
+    {
+        i=head->val;
+        ptr=head;
+        head=head->next;
+        free(ptr);
+        printf("\n The item is popped\n");
+        
+    }
+}
+void display()
+{
+    int i;
+    struct node *ptr;
+    ptr=head;
+    if(ptr==NULL)
+    {
+        printf("stack underflow");
+    }
+    else
+    {
+        printf("\nprinting stack elements\n");
+        while(ptr!=NULL)
+        {
+            
+            printf("%d ",ptr->val);
+            ptr=ptr->next;
+        }
+    }
+}
+void main()
+{
+    int choice;
+    printf("\n Stack Operations Using Linked LISts ");
+    while(choice!=4)
+    {
+        printf("enter your choice\n1.push\n2.pop\n3.display\n4.exit\n");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1: printf(" pushing the elemnt");
+                    push();
+                    break;
+            case 2: printf("popping the element");
+                    pop();
+                    break;
+            case 3: printf("Displaying THe elements of the stack");
+                    display();
+                    break;
+            case 4: printf(" exit");
+                    break;
+            default:    printf("entered a worng number");
+                        break;
+        }
+        
+    }
+}
